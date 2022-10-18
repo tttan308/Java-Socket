@@ -14,22 +14,24 @@ public class TCPServer {
                 // accept lang nghe yeu cau ma client gui toi
                 Socket socket = server.accept();
                 // luong doc
-                BufferedReader reader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+                BufferedReader readerServer = new BufferedReader(new InputStreamReader(socket.getInputStream()));
                 // luong ghi
-                PrintWriter writer = new PrintWriter(socket.getOutputStream());
+                PrintWriter writerServer = new PrintWriter(socket.getOutputStream());
 
                 //doc du lieu tu luong doc
-                String line = reader.readLine();
+                String line = readerServer.readLine();
 
                 System.out.println("Received data!");
-                writer.println("Sent: " + line.toUpperCase());
-
+                System.out.println("Sent: " + line.toUpperCase());
+                writerServer.println("UpperCase Success!");
+                writerServer.println("Close connection!");
+                
                 // day du lieu dem ra khoi bo dem
-                writer.flush();
+                writerServer.flush();
 
                 //dong cac luong
-                reader.close();
-                writer.close();
+                readerServer.close();
+                writerServer.close();
                 socket.close();
             }
         } catch (Exception e) 

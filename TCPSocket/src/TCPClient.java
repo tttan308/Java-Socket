@@ -7,30 +7,28 @@ import java.util.Scanner;
 public class TCPClient {
     public static void main(String[] args) {
         try{
-            Socket socket = new Socket("localhost", 55555);
+            Socket socket = new Socket("127.0.0.1", 55555);
             System.out.println("Connected to server!");
 
             // luong doc
-            BufferedReader reader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+            BufferedReader readerClient = new BufferedReader(new InputStreamReader(socket.getInputStream()));
             // luong ghi
-            PrintWriter writer = new PrintWriter(socket.getOutputStream());
+            PrintWriter writerClient = new PrintWriter(socket.getOutputStream());
 
             Scanner scanner = new Scanner(System.in);
             System.out.print("Enter data: ");
             String line = scanner.nextLine();
 
             System.out.println("Sent data!");
-            writer.println(line);
-            writer.flush();
-
-            String lineSent = reader.readLine();
-            System.out.println("Received: " + lineSent);
-
-            System.out.println("Received: " + reader.readLine());
+            writerClient.println(line);
+            writerClient.flush();
+;
+            System.out.println("Received: " + readerClient.readLine());
+            System.out.println(readerClient.readLine());
             
              //dong cac luong
-             reader.close();
-             writer.close();
+             readerClient.close();
+             writerClient.close();
              socket.close();
         } catch (Exception e) 
         {
