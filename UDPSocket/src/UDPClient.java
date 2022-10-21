@@ -14,14 +14,13 @@ public class UDPClient {
             DatagramSocket datagramSocket = new DatagramSocket();
 
             byte[] readBuffer = new byte[1024];
-            byte[] writeBuffer = null;
 
             InetAddress host = InetAddress.getByName("localhost");
             int port = 55555;
 
             DatagramPacket sendPacket = new DatagramPacket(name.getBytes(), name.getBytes().length, host, port);
             datagramSocket.send(sendPacket);
-            System.out.println("Sent! ");
+            System.out.println("Sent!");
 
             DatagramPacket receivePacket = new DatagramPacket(readBuffer, readBuffer.length);
             datagramSocket.receive(receivePacket);
